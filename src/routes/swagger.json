@@ -1,0 +1,221 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "User API",
+      "description": "API for managing users"
+    },
+    "host": "localhost:58475/etiquette",
+    "basePath": "/",
+    "schemes": [
+      "http"
+    ],
+    "paths": {
+      "/": {
+        "post": {
+          "summary": "Insert Users",
+          "description": "Add new users to the database",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "user",
+              "description": "User object that needs to be added",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Users inserted successfully"
+            }
+          }
+        }
+      },
+      "/deleteusers": {
+        "post": {
+          "summary": "Delete Users",
+          "description": "Delete users from the database",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "userIds",
+              "description": "Array of user IDs to be deleted",
+              "required": true,
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Users deleted successfully"
+            }
+          }
+        }
+      },
+      "/getusers": {
+        "post": {
+          "summary": "Get Users",
+          "description": "Retrieve users from the database",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "List of users",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/User"
+                }
+              }
+            }
+          }
+        }
+      },
+      "/editusers": {
+        "post": {
+          "summary": "Edit Users",
+          "description": "Edit user details in the database",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "user",
+              "description": "User object with updated information",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Users edited successfully"
+            }
+          }
+        }
+      },
+      "/getusersbyid": {
+        "post": {
+          "summary": "Get Users by ID",
+          "description": "Retrieve users by their ID from the database",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "userId",
+              "description": "User ID",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "User retrieved successfully",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        }
+      },
+      "/getusersbycategory": {
+        "post": {
+          "summary": "Get Users by Category",
+          "description": "Retrieve users by category from the database",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "category",
+              "description": "Category name",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Users retrieved successfully",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/User"
+                }
+              }
+            }
+          }
+        }
+      },
+      "/gettable": {
+        "get": {
+          "summary": "Get Table",
+          "description": "Retrieve table data from the database",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "Table data retrieved successfully",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "/getuserfromtables": {
+        "post": {
+          "summary": "Get User from Tables",
+          "description": "Retrieve user data from multiple tables in the database",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "query",
+              "description": "Query object",
+              "required": true,
+              "schema": {
+                "type": "object"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "User data retrieved successfully",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+  
